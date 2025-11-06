@@ -19,6 +19,8 @@ const navLinks: NavLink[] = [
   { label: "Contact us", href: "/company/contact" },
 ];
 
+import { socialLinks } from '~/store/store';
+
 export default function Header() {
 
   const pathname = usePathname();
@@ -171,8 +173,39 @@ export default function Header() {
                 </ul>
               </nav>
 
-              <ul>
-                <li>Social Links</li>
+              {/* Social Links */}
+              <ul className="flex items-center gap-6 p-6">
+                {socialLinks.map(({ label, href, icon: Icon, color }) => {
+                  return (
+                    <li 
+                      key={href}
+                      className="relative flex flex-col items-center group"
+                    >
+                      {/* Label */}
+                      <span
+                        className={`
+                          absolute -top-6 text-xs text-(--text-black) dark:text-white px-2 py-0.5 rounded-md backdrop-blur-sm 
+                          bg-white/80 dark:bg-black/50 opacity-0 group-hover:opacity-100 
+                          group-hover:translate-y-[-2px] transition-all duration-300 ease-in-out 
+                          ${color?.replace("hover:", "")}
+                        `}
+                      >
+                        {label}
+                      </span>
+
+                      {/* Icon */}
+                      <Link
+                        href={href}
+                        className={`text-(--text-black) dark:text-white ${color} focus:text-(--text-black)
+                          duration-300 ease-in-out transition-all
+                          "
+                        `}
+                      >
+                        {Icon && <Icon className="w-5 h-5" />}
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
 
 

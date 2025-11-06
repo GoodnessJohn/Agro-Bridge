@@ -10,11 +10,11 @@ export const metadata: Metadata = {
   description:
     "Agrobridge connects farmers with the right sellers for their crops. Streamlining agriculture for a better tomorrow.",
   keywords: "Agrobridge, farmers, sellers, agriculture, crops, marketplace",
-  authors: [{ name: "Agrobridge Team", url: "https://agrobridge.com" }],
+  authors: [{ name: "Agrobridge Team", url: "https://agro-bridge-taupe.vercel.app/" }],
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://agrobridge.com", // Replace with actual URL
+    url: "https://agro-bridge-taupe.vercel.app/", // Replace with actual URL
     title: "Agrobridge | Bridging Farmers to Sellers",
     description:
       "Agrobridge connects farmers with the right sellers for their crops. Streamlining agriculture for a better tomorrow.",

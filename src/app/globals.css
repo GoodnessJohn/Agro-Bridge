@@ -1,3 +1,4 @@
+
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -87,7 +88,8 @@
 
   --text-black: #121212;
   --text-white: #EFEFEF;
-  --agro-green: #2B6036;
+  --agro-green-light: #2B6036;
+  --agro-green-dark: #03731B;
 }
 
 .dark {

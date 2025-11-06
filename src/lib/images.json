@@ -1,0 +1,71 @@
+
+{
+  "homeImages": [
+    {
+      "id": "home-hero",
+      "imageUrl": "/homepage/hero-home.jpeg",
+      "imageAlt": "Wind turbines in a field, representing technology in agriculture."
+    },
+    {
+      "id": "get-started-1",
+      "imageUrl": "/homepage/get-started-1.jpg",
+      "imageAlt": "Wind turbines in a field, representing technology in agriculture."
+    },
+    {
+      "id": "get-started-2",
+      "imageUrl": "/homepage/get-started-2.jpg",
+      "imageAlt": ""
+    },
+    {
+      "id": "get-started-3",
+      "imageUrl": "/homepage/get-started-3.jpg",
+      "imageAlt": ""
+    },
+    {
+      "id": "get-started-4",
+      "imageUrl": "/homepage/get-started-4.jpg",
+      "imageAlt": ""
+    },
+    {
+      "id": "story-vision",
+      "imageUrl": "/homepage/story-vision.jpg",
+      "imageAlt": ""
+    },
+    {
+      "id": "solution-1",
+      "imageUrl": "/homepage/solution-1.jpg",
+      "imageAlt": ""
+    },
+    {
+      "id": "solution-2",
+      "imageUrl": "/homepage/solution-2.jpg",
+      "imageAlt": ""
+    },
+    {
+      "id": "solution-3",
+      "imageUrl": "/homepage/solution-3.jpg",
+      "imageAlt": ""
+    },
+    {
+      "id": "solution-4",
+      "imageUrl": "/homepage/solution-4.jpg",
+      "imageAlt": ""
+    },
+    {
+      "id": "video-thumbnail-1",
+      "imageUrl": "/homepage/video-thumbnail-1.jpg",
+      "imageAlt": ""
+    },
+    {
+      "id": "video-thumbnail-2",
+      "imageUrl": "/homepage/video-thumbnail-2.jpg",
+      "imageAlt": ""
+    },
+    {
+      "id": "cta-background",
+      "imageUrl": "/homepage/cta-background.jpg",
+      "imageAlt": ""
+    }
+    
+  ]
+}

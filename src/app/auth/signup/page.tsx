@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: {
     template: "%s | Bridging Farmers to Sellers",
-    default: "Blog",
+    default: "SignUp",
   },
   description:
     "Agrobridge connects farmers with the right sellers for their crops. Streamlining agriculture for a better tomorrow.",
@@ -39,8 +39,9 @@ export const metadata: Metadata = {
   // favicon: "/favicon.ico", // Replace with your favicon path
 };
 
-export default function Blog() {
+export default function SignUp() {
   return (
-    <div>Blog</div>
+    <div>SignUp</div>
   );
 }
+
