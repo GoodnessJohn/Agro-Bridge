@@ -1,15 +1,27 @@
 
 "use client";
 
-import type { Metadata } from "next";
-import { ArrowRight, PlayCircle, Plus } from "lucide-react";
+import { useState, useTransition, useEffect } from "react";
+import Image from "next/image";
 import Link from "next/link";
+import { ArrowRight, PlayCircle, Plus } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { HomeImages } from "~/lib/images";
-import type { Stat } from "./types/types";
-import { useState, useTransition } from "react";
 import { toast } from "sonner";
+import { handleSubscribe } from '~/actions/subscribe';
+import { subscribeFormSchema } from '~/lib/validations/subscribe-form-schema';
+
+import type { Metadata } from "next";
+import type { Stat } from "./types/types";
+
+
+import { VideoPlayer } from "./components/VideoPlayer";
+import type { VideoComponent } from "./types/types";
+
+interface VideoGalleryProps {
+  videoThumbnails: VideoComponent[]
+}
 
 // Static metadata
 const metadata: Metadata = {
@@ -49,12 +61,6 @@ const metadata: Metadata = {
   // favicon: "/favicon.ico", // Replace with your favicon path
 };
 
-import Image from "next/image";
-
-import { handleSubscribe } from '~/actions/subscribe';
-import { subscribeFormSchema } from '~/lib/validations/subscribe-form-schema';
-
-
 const stats: Stat[] = [
   { value: '50+', label: 'Years Of Experience' },
   { value: '200+', label: 'Fields Under Cultivation' },
@@ -75,6 +81,25 @@ const solutions = [
   { title: 'Automated Farming', description: 'Enhance farm efficiency & productivity with our cutting-edge automation solution.', imageId: 'solution-3' },
 ]
 
+const videoComponent: VideoComponent[] = [
+  {
+    id: '1',
+    title: 'Modern Farming Techniques',
+    imageUrl: '/company/video-thumbnail-1.jpg',
+    imageAlt: 'Farming field',
+    videoUrl: 'https://www.youtube.com/watch?v=CpZkNQ0E4YI',
+    captionUrl: '/videos/video1.vtt',
+  },
+  {
+    id: '2',
+    title: 'AgroBridge Success Story',
+    imageUrl: '/company/video-thumbnail-1.jpg',
+    imageAlt: 'Farming field',
+    videoUrl: 'https://www.youtube.com/watch?v=CpZkNQ0E4YI',
+    captionUrl: '/videos/video1.vtt',
+  },
+];
+
 
 export default function Home() {
   const homeImage = HomeImages.find((img) => img.id === "home-hero");
@@ -88,6 +113,10 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
   const [honeypot, setHoneypot] = useState("");
+
+  // Simple fade-in animation
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault(); // Prevent full reload
@@ -131,10 +160,10 @@ export default function Home() {
   }
 
   return (
-    <div className="relative -mt-(--navbar-h) [font-family:var(--font-open-sans)] ">
-      <main className="bg-white dark:bg-black w-full h-full">
+    <main className="relative -mt-(--navbar-h) [font-family:var(--font-open-sans)] ">
+      <div className="bg-white dark:bg-black w-full h-full">
         
-        {/* Hero Section */}
+        {/* Home Hero Section */}
         <section className="relative lg:-mt-(--navbar-h) h-full lg:h-screen">
           {/* Background Image */}
           (homeImage && (
@@ -152,18 +181,21 @@ export default function Home() {
           <div className="absolute inset-0 bg-black/60 z-10"></div>
 
           {/* Content */}
-          <div className="relative z-12 flex flex-col items-center lg:justify-center gap-6 px-(--section-px) sm:px-(--section-px-sm) lg:px-(--section-px-lg) py-32 lg:py-0 lg:pt-0 w-full max-w-4xl mx-auto h-full">
-            <p className="text-sm text-(--agro-green-dark) font-semibold uppercase tracking-widest">Sowing Seeds of Change</p>
+          <div className="relative z-12 flex flex-col items-center lg:justify-center gap-12 px-(--section-px) sm:px-(--section-px-sm) lg:px-(--section-px-lg) py-32 lg:py-0 lg:pt-0 w-full max-w-4xl mx-auto h-full">
+            
+            <div className="flex flex-col items-center lg:justify-center gap-6 lg:gap-8">
+              <p className="text-sm text-(--agro-green-dark) font-semibold uppercase tracking-widest">Sowing Seeds of Change</p>
 
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl text-(--text-white) dark:text-white font-bold">
-              The Future of Fair
-                <br />
-              Agricultural Trade
-            </h1>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl text-(--text-white) dark:text-white text-center font-bold font-headline">
+                The Future of Fair
+                  <br />
+                Agricultural Trade
+              </h1>
 
-            <p className="lg:text-lg text-(--text-white) max-w-xl mx-auto mt-6">
-              Quickly communicate AgroBridge's mission, benefits, and credibility
-            </p>
+              <p className="text-center text-sm lg:text-base text-(--text-white) max-w-xl mx-auto">
+                Quickly communicate AgroBridge's mission, benefits, and credibility
+              </p>
+            </div>
 
             <Link 
               href="/auth/signup"
@@ -181,6 +213,7 @@ export default function Home() {
         <section className="relative py-(--section-py) sm:py-(--section-py-sm) lg:py-(--section-py-lg) w-full h-full">
           <div className="flex flex-col gap-16 lg:gap-20 px-(--section-px) sm:px-(--section-px-sm) lg:px-(--section-px-lg) w-full max-w-7xl mx-auto h-full">
 
+            {/* Stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
               {stats.map((stat) => (
                 <div key={stat.label}>
@@ -191,32 +224,34 @@ export default function Home() {
             </div>
 
             <div className="relative mx-auto text-center">
-              <h2 className="text-2xl lg:text-3xl font-bold font-headline">
+              <h2 className="text-xl sm:text-2xl lg:text-3xl text-center font-bold font-headline">
                 Despite Technological Advances In Agriculture, Traditional, Labor-Heavy Farming Practices Continue To Show Inefficiencies.
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              {/* Get Started */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
 
+              {/* Image 0 */}
               <div className="relative flex flex-col gap-4 lg:col-span-1">
                 {(() => {
                   const getStartedImage = HomeImages.find((img) => img.id === getStartedSteps[0].imageId);
                   return(
-                    <div className="relative aspect-[3/4] rounded-lg shadow-md overflow-hidden">
+                    <div className="relative aspect-[3/4] h-90 lg:h-full rounded-lg shadow-md overflow-hidden">
                       {getStartedImage && (
                         <>
                           <Image 
                             src={getStartedImage.imageUrl} 
                             alt={getStartedImage.imageAlt} 
                             fill
-                            className="object-cover"
+                            className="object-cover shadow-md"
                           />
 
                           <div className="absolute bottom-4 flex flex-col gap-2 w-full rounded">
                             <div className="absolute inset-0 bg-black/20 z-1"></div>
                             <div className="flex flex-col gap-2 px-2 z-2">
-                              <p className="text-(--agro-green-dark) font-bold text-4xl font-bold">{getStartedSteps[0].id}</p>
-                              <h3 className="text-white font-semibold">{getStartedSteps[0].title}</h3>
+                              <p className="text-(--agro-green-dark) font-bold text-2xl sm:text-3xl lg:text-4xl font-bold">{getStartedSteps[0].id}</p>
+                              <h3 className="text-sm lg:text-base text-white font-semibold">{getStartedSteps[0].title}</h3>
                             </div>
                           </div>
                         </>
@@ -225,34 +260,12 @@ export default function Home() {
                   );
                 })()}
                 
-                      {/* {getStartedStepsImages.map((getStartedStep) => (
-                        <div className="relative aspect-w-3 aspect-h-4 rounded-lg shadow-md overflow-hidden">
-                          <Image 
-                            src={getStartedStep.imageUrl} 
-                            alt={getStartedStep.imageAlt} 
-                            layout="fill" 
-                            className="object-cover"
-                          />
-
-                          <div className="flex flex-col gap-2 text-white bg-black/20 rounded">
-                            <p className="text-(--agro-green-dark) font-bold text-4xl font-bold">{getStartedSteps[0].id}</p>
-                            <h3 className="font-semibold">{getStartedSteps[0].title}</h3>
-                          </div>
-
-                          {/* <div className="absolute bottom-4 left-4 text-white p-2 bg-black/20 rounded">
-                            <p className="text-primary font-bold text-4xl">{getStartedSteps[0].id}</p>
-                            <h3 className="font-semibold mt-1">{getStartedSteps[0].title}</h3>
-                          </div> 
-
-                        </div>
-                      ))} */}
-                
               </div>
 
               <div className="flex flex-col gap-8 lg:col-span-2">
                 {/* Get Started */}
                 <div className="flex items-center justify-between gap-2">
-                  <h2 className="text-5xl text-(--agro-green-dark) font-bold font-headline leading-tight">
+                  <h2 className="text-3xl sm:text-4xl lg:text-5xl text-(--agro-green-dark) font-bold font-headline leading-tight">
                     Get Started
                     <br />
                     Now
@@ -262,31 +275,32 @@ export default function Home() {
                     href="/auth/signup"
                     className="text-white text-sm font-bold bg-black rounded-full"
                   >
-                    <Plus className="p-1.75 w-8 h-8" />
+                    <Plus className="p-1.5 lg:p-2 w-8 h-8" />
                   </Link>
                 </div>
 
                 {/* Images */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                  {/* Image 1 */}
                   <div className="relative flex flex-col gap-4 lg:col-span-1">
                     {(() => {
                       const getStartedImage = HomeImages.find((img) => img.id === getStartedSteps[1].imageId);
                       return(
-                        <div className="relative aspect-[3/4] rounded-lg shadow-md overflow-hidden">
+                        <div className="relative aspect-[3/4] h-80 sm:h-full rounded-lg shadow-md overflow-hidden">
                           {getStartedImage && (
                             <>
                               <Image 
                                 src={getStartedImage.imageUrl} 
                                 alt={getStartedImage.imageAlt} 
                                 fill
-                                className="object-cover"
+                                className="object-cover shadow-md"
                               />
 
-                              <div className="absolute bottom-4 flex flex-col gap-2 p-2 w-full rounded">
+                              <div className="absolute bottom-4 flex flex-col gap-2 p-1 sm:p-2 w-full rounded">
                                 <div className="absolute inset-0 bg-black/20 z-1"></div>
                                 <div className="flex flex-col gap-2 px-2 z-2">
-                                  <p className="text-(--agro-green-dark) font-bold text-4xl font-bold">{getStartedSteps[1].id}</p>
-                                  <h3 className="text-white font-semibold">{getStartedSteps[1].title}</h3>
+                                  <p className="text-(--agro-green-dark) font-bold text-2xl sm:text-3xl lg:text-4xl font-bold">{getStartedSteps[1].id}</p>
+                                  <h3 className="text-sm lg:text-base text-white font-semibold">{getStartedSteps[1].title}</h3>
                                 </div>
                               </div>
                             </>
@@ -296,25 +310,26 @@ export default function Home() {
                     })()}                  
                   </div>
 
+                  {/* Image 2 */}
                   <div className="relative flex flex-col gap-4 lg:col-span-1">
                     {(() => {
                       const getStartedImage = HomeImages.find((img) => img.id === getStartedSteps[2].imageId);
                       return(
-                        <div className="relative aspect-[3/4] rounded-lg shadow-md overflow-hidden">
+                        <div className="relative aspect-[3/4] h-80 sm:h-full rounded-lg shadow-md overflow-hidden">
                           {getStartedImage && (
                             <>
                               <Image 
                                 src={getStartedImage.imageUrl} 
                                 alt={getStartedImage.imageAlt} 
                                 fill
-                                className="object-cover"
+                                className="object-cover shadow-md"
                               />
 
                               <div className="absolute bottom-4 flex flex-col gap-2 p-2 w-full rounded">
                                 <div className="absolute inset-0 bg-black/20 z-1"></div>
                                 <div className="flex flex-col gap-2 px-2 z-2">
-                                  <p className="text-(--agro-green-dark) font-bold text-4xl font-bold">{getStartedSteps[2].id}</p>
-                                  <h3 className="text-white font-semibold">{getStartedSteps[2].title}</h3>
+                                  <p className="text-(--agro-green-dark) text-2xl sm:text-3xl lg:text-4xl font-bold">{getStartedSteps[2].id}</p>
+                                  <h3 className="text-sm lg:text-base text-white font-semibold">{getStartedSteps[2].title}</h3>
                                 </div>
                               </div>
                             </>
@@ -324,25 +339,26 @@ export default function Home() {
                     })()}                  
                   </div>
 
+                  {/* Image 3 */}
                   <div className="relative flex flex-col gap-4 lg:col-span-1">
                     {(() => {
                       const getStartedImage = HomeImages.find((img) => img.id === getStartedSteps[3].imageId);
                       return(
-                        <div className="relative aspect-[3/4] rounded-lg shadow-md overflow-hidden">
+                        <div className="relative aspect-[3/4] h-80 sm:h-full rounded-lg shadow-md overflow-hidden">
                           {getStartedImage && (
                             <>
                               <Image 
                                 src={getStartedImage.imageUrl} 
                                 alt={getStartedImage.imageAlt} 
                                 fill
-                                className="object-cover"
+                                className="object-cover shadow-md"
                               />
 
                               <div className="absolute bottom-4 flex flex-col gap-2 p-2 w-full rounded">
                                 <div className="absolute inset-0 bg-black/20 z-1"></div>
                                 <div className="flex flex-col gap-2 px-2 z-2">
-                                  <p className="text-(--agro-green-dark) font-bold text-4xl font-bold">{getStartedSteps[3].id}</p>
-                                  <h3 className="text-white font-semibold">{getStartedSteps[3].title}</h3>
+                                  <p className="text-(--agro-green-dark) text-2xl sm:text-3xl lg:text-4xl font-bold">{getStartedSteps[3].id}</p>
+                                  <h3 className="text-sm lg:text-base text-white font-semibold">{getStartedSteps[3].title}</h3>
                                 </div>
                               </div>
                             </>
@@ -370,7 +386,7 @@ export default function Home() {
                   src={storyImage.imageUrl}
                   alt={storyImage.imageAlt}
                   fill
-                  className="object-cover object-center"
+                  className="object-cover object-center shadow-md"
                   priority
                 />
               )}
@@ -427,9 +443,11 @@ export default function Home() {
                 return (
                   <div key={solutionsImage?.imageUrl}>
                     {solutionsImage && 
-                      <Image src={solutionsImage?.imageUrl} alt={solutionsImage?.imageAlt}
+                      <Image 
+                        src={solutionsImage?.imageUrl} 
+                        alt={solutionsImage?.imageAlt}
                         width={500} height={150}
-                        className="rounded-lg object-cover shadow-lg max-h-90"
+                        className="rounded-lg object-cover shadow-lg max-h-90 shadow-md"
                       />
                     }
                       <h3 className="text-lg lg:text-xl font-semibold mt-6 my-2 text-(--text-black)">{solution.title}</h3>
@@ -447,24 +465,15 @@ export default function Home() {
           <div className="flex flex-col gap-4 gap-6 lg:gap-8 px-(--section-px) sm:px-(--section-px-sm) lg:px-(--section-px-lg) w-full max-w-7xl mx-auto h-full">
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-            {videoThumbnails.map((thumbnail) => (
-              <div key={thumbnail.id} className="relative rounded-lg overflow-hidden aspect-video">
-                <Image 
-                  src={thumbnail.imageUrl} 
-                  alt={thumbnail.imageAlt} 
-                  fill 
-                  objectFit="cover"
-                />
-                <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-                  <Button variant="ghost" size="icon" className="w-20 h-20 bg-white/30 hover:bg-white/50 backdrop-blur-sm rounded-full">
-                    <PlayCircle className="w-12 h-12 text-white" />
-                  </Button>
-                </div>
-              </div>
-            ))}
 
-            <h3 className="text-2xl font-bold font-headline">Facilitate discovery & trade between farmers, aggregators and buyers.</h3>
-          </div>
+              {videoComponent.map((video) => (
+                <VideoPlayer key={video.id} video={video} />
+              ))}
+              
+
+              <h3 className="text-2xl font-bold font-headline">Facilitate discovery & trade between farmers, aggregators and buyers.</h3>
+
+            </div>
 
           </div>
         </section>
@@ -523,7 +532,7 @@ export default function Home() {
           </div>
         </section>
 
-      </main>
-    </div>
+      </div>
+    </main>
   );
 }
