@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useState, useTransition } from 'react';
 import { AppLogo } from './app-logo';
 import type { NavLink } from '../types/types';
-import { PhoneIcon, MailIcon, LocateFixedIcon, ArrowRight } from 'lucide-react';
+import { PhoneIcon, MailIcon, MapPin, ArrowRight } from 'lucide-react';
 
 import { Button } from '~/components/ui/button';
 import { Input } from '~/components/ui/input';
@@ -15,11 +15,8 @@ import { handleSubscribe } from '~/actions/subscribe';
 import { subscribeFormSchema } from '~/lib/validations/subscribe-form-schema';
 import { socialLinks } from '~/store/store';
 
-
 let devYear: number = 2024;
 let currentYear: number = new Date().getFullYear();
-
-
 
 const companyLinks: NavLink[] = [
   { label: "Farmers", href: "/company/farmers" },
@@ -107,11 +104,12 @@ export default function Footer() {
       <div className="grid gap-8 px-(--section-px) sm:px-(--section-px-sm) lg:px-(--section-px-lg) w-full max-w-7xl mx-auto h-full">
         {/* Footer 1 */}
         
-        <div className="flex flex-col gap-8 lg:gap-12">
-          <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4 sm:gap-6 lg:gap-8 pt-12 w-full">
+        <div className="flex flex-col gap-8 lg:gap-12 pt-12">
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 w-full">
+            
             
             {/* Description */}
-            <div className="flex flex-col gap-8 col-span-2 lg:col-span-1">
+            <div className="flex flex-col gap-8 w-full lg:w-[280px] xl:w-[320px] shrink-0">
 
               <div className="flex flex-col gap-6 lg:gap-8">
               
@@ -163,103 +161,107 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Company Links */}
-            <div className="flex flex-col gap-4 w-full">
-              <h4 className="text-lg lg:text-xl text-black dark:text-white font-semibold">Company</h4>
+            {/* Company, Resource, Help and COntact Us */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:[grid-template-columns:repeat(auto-fit,minmax(180px,1fr))] gap-8 w-full">
 
-              <ul className="flex flex-col gap-2 text-sm lg:text-base">
-                {companyLinks.map(({ label, href, icon: Icon }) => {
-                  return (
-                    <li key={href}>
-                      <Link
-                        href={href}
-                        className="text-(--text-black) hover:text-primary focus:text-primary duration-300 ease-in-out transition-all"
-                      >
-                        {Icon && <Icon className="w-4 h-4" />}
-                        <span>{label}</span>
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
+              {/* Company Links */}
+              <div className="flex flex-col gap-4 w-full">
+                <h4 className="text-lg lg:text-xl text-black dark:text-white font-semibold">Company</h4>
 
-            {/* Resource Links */}
-            <div className="flex flex-col gap-4 w-full">
-              <h4 className="text-lg lg:text-xl text-black dark:text-white font-semibold">Resource</h4>
+                <ul className="flex flex-col gap-2 text-sm lg:text-base">
+                  {companyLinks.map(({ label, href, icon: Icon }) => {
+                    return (
+                      <li key={href}>
+                        <Link
+                          href={href}
+                          className="text-(--text-black) hover:text-primary focus:text-primary duration-300 ease-in-out transition-all"
+                        >
+                          {Icon && <Icon className="w-4 h-4" />}
+                          <span>{label}</span>
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
 
-              <ul className="flex flex-col gap-2 text-sm lg:text-base">
-                {resourceLinks.map(({ label, href, icon: Icon }) => {
-                  return (
-                    <li key={href}>
-                      <Link
-                        href={href}
-                        className="text-(--text-black) hover:text-primary focus:text-primary duration-300 ease-in-out transition-all"
-                      >
-                        {Icon && <Icon className="w-4 h-4" />}
-                        <span>{label}</span>
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
+              {/* Resource Links */}
+              <div className="flex flex-col gap-4 w-full">
+                <h4 className="text-lg lg:text-xl text-black dark:text-white font-semibold">Resource</h4>
 
-            {/* Help Links */}
-            <div className="flex flex-col gap-4 w-full">
-              <h4 className="text-lg lg:text-xl text-black dark:text-white font-semibold">Help</h4>
+                <ul className="flex flex-col gap-2 text-sm lg:text-base">
+                  {resourceLinks.map(({ label, href, icon: Icon }) => {
+                    return (
+                      <li key={href}>
+                        <Link
+                          href={href}
+                          className="text-(--text-black) hover:text-primary focus:text-primary duration-300 ease-in-out transition-all"
+                        >
+                          {Icon && <Icon className="w-4 h-4" />}
+                          <span>{label}</span>
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
 
-              <ul className="flex flex-col gap-2 text-sm lg:text-base">
-                {helpLinks.map(({ label, href, icon: Icon }) => {
-                  return (
-                    <li key={href}>
-                      <Link
-                        href={href}
-                        className="text-(--text-black) hover:text-primary focus:text-primary duration-300 ease-in-out transition-all"
-                      >
-                        {Icon && <Icon className="w-4 h-4" />}
-                        <span>{label}</span>
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
+              {/* Help Links */}
+              <div className="flex flex-col gap-4 w-full">
+                <h4 className="text-lg lg:text-xl text-black dark:text-white font-semibold">Help</h4>
 
-            {/* Contact Us */}
-            <div className="flex flex-col gap-4 w-full">
-              <h4 className="text-lg font-semibold">Contact Us</h4>
+                <ul className="flex flex-col gap-2 text-sm lg:text-base">
+                  {helpLinks.map(({ label, href, icon: Icon }) => {
+                    return (
+                      <li key={href}>
+                        <Link
+                          href={href}
+                          className="text-(--text-black) hover:text-primary focus:text-primary duration-300 ease-in-out transition-all"
+                        >
+                          {Icon && <Icon className="w-4 h-4" />}
+                          <span>{label}</span>
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
 
-              <ul className="flex flex-col gap-2 text-sm lg:text-base">
-                <li>
-                  <a
-                    href="tel:+2348049292092"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex flex-wrap items-center gap-2 text-(--text-black) hover:text-primary focus:text-primary duration-300 ease-in-out transition-all"
-                  >
-                    <PhoneIcon className="w-5 h-5" />                  
-                    +234(0) 804 929 2092
-                  </a>
-                </li>
+              {/* Contact Us */}
+              <div className="flex flex-col gap-4 w-full">
+                <h4 className="text-lg font-semibold">Contact Us</h4>
 
-                <li>
-                  <a
-                    href="mailto:emailaddress@example.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex flex-wrap items-center gap-2 text-(--text-black) hover:text-primary focus:text-primary duration-300 ease-in-out transition-all"
-                  >
-                    <MailIcon className="w-5 h-5" />
-                    Email Address
-                  </a>
-                </li>
+                <ul className="flex flex-col gap-2 text-sm lg:text-base">
+                  <li>
+                    <a
+                      href="tel:+2348049292092"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex flex-wrap items-center gap-2 text-(--text-black) hover:text-primary focus:text-primary duration-300 ease-in-out transition-all"
+                    >
+                      <PhoneIcon className="w-5 h-5" />                  
+                      +234(0) 804 929 2092
+                    </a>
+                  </li>
 
-                <li className="flex items-center gap-2 text-black dark:text-white cursor-text">
-                  <LocateFixedIcon className="w-5 h-5" />
-                  <span className="text-wrap">Barnawa, Kaduna State, Nigeria</span>
-                </li>
-              </ul>
+                  <li>
+                    <a
+                      href="mailto:emailaddress@example.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex flex-wrap items-center gap-2 text-(--text-black) hover:text-primary focus:text-primary duration-300 ease-in-out transition-all"
+                    >
+                      <MailIcon className="w-5 h-5" />
+                      Email Address
+                    </a>
+                  </li>
+
+                  <li className="flex items-center gap-2 text-black dark:text-white cursor-text">
+                    <MapPin className="w-5 h-5" />
+                    <span className="text-wrap">Barnawa, Kaduna State, Nigeria</span>
+                  </li>
+                </ul>
+              </div>
             </div>
 
           </div>
