@@ -1,45 +1,45 @@
 
 import type { Metadata } from "next";
+import { baseMetadata } from "~/lib/metadata";
 
-// Static metadata
-export const metadata: Metadata = {
-  title: {
-    template: "%s | Bridging Farmers to Sellers",
-    default: "Blog",
-  },
+const metadata: Metadata = {
+  ...baseMetadata,
+  title: "Blog | Agrobridge Insights",
   description:
-    "Agrobridge connects farmers with the right sellers for their crops. Streamlining agriculture for a better tomorrow.",
-  keywords: "Agrobridge, farmers, sellers, agriculture, crops, marketplace",
-  authors: [{ name: "Agrobridge Team", url: "https://agro-bridge-taupe.vercel.app/" }],
+    "Read the latest articles, tips, and insights from Agrobridge experts on farming, marketplace trends, and agriculture technology.",
+  keywords: [
+    "Agrobridge blog",
+    "agriculture articles",
+    "farmers tips",
+    "marketplace insights",
+    "agritech news",
+  ],
   openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "https://agro-bridge-taupe.vercel.app/", // Replace with actual URL
-    title: "Agrobridge | Bridging Farmers to Sellers",
+    ...baseMetadata.openGraph,
+    title: "Blog | Agrobridge Insights",
     description:
-      "Agrobridge connects farmers with the right sellers for their crops. Streamlining agriculture for a better tomorrow.",
-    siteName: "Agrobridge",
+      "Stay updated with Agrobridge articles, guides, and insights for farmers and sellers.",
+    url: "https://agro-bridge-taupe.vercel.app/resource/blog",
     images: [
       {
-        url: "/og-image.jpg", // Ensure this image exists in the static files
+        url: "https://agro-bridge-taupe.vercel.app/og-blog.jpg",
         width: 1200,
         height: 630,
-        alt: "Agrobridge - Connecting Farmers to Sellers",
+        alt: "Agrobridge Blog",
       },
     ],
   },
   twitter: {
-    card: "summary_large_image", // Ensures the large image format for Twitter
-    site: "@agrobridge", // Replace with your actual Twitter handle
-    title: "Agrobridge | Bridging Farmers to Sellers",
+    ...baseMetadata.twitter,
+    title: "Blog | Agrobridge Insights",
     description:
-      "Agrobridge connects farmers with the right sellers for their crops.",
-    images: "/twitter-image.jpg", // Twitter-specific image
+      "Explore Agrobridge’s blog for tips, trends, and updates in agriculture and marketplaces.",
+    images: ["https://agro-bridge-taupe.vercel.app/twitter-blog.jpg"],
   },
-  // favicon: "/favicon.ico", // Replace with your favicon path
 };
 
-export default function Blog() {
+
+export default function BlogPage() {
   return (
     <div>Blog</div>
   );

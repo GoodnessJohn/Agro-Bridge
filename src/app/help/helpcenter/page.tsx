@@ -1,46 +1,45 @@
 
 import type { Metadata } from "next";
+import { baseMetadata } from "~/lib/metadata";
 
-// Static metadata
-export const metadata: Metadata = {
-  title: {
-    template: "%s | Bridging Farmers to Sellers",
-    default: "Help",
-  },
+const metadata: Metadata = {
+  ...baseMetadata,
+  title: "Help Center | Your Agrobridge Support Hub",
   description:
-    "Agrobridge connects farmers with the right sellers for their crops. Streamlining agriculture for a better tomorrow.",
-  keywords: "Agrobridge, farmers, sellers, agriculture, crops, marketplace",
-  authors: [{ name: "Agrobridge Team", url: "https://agro-bridge-taupe.vercel.app/" }],
+    "Access the Agrobridge Help Center to get guidance on using the platform, managing your account, and connecting with sellers or farmers.",
+  keywords: [
+    "Agrobridge help center",
+    "customer support",
+    "platform guide",
+    "agriculture help",
+    "account assistance",
+  ],
   openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "https://agro-bridge-taupe.vercel.app/", // Replace with actual URL
-    title: "Agrobridge | Bridging Farmers to Sellers",
+    ...baseMetadata.openGraph,
+    title: "Help Center | Your Agrobridge Support Hub",
     description:
-      "Agrobridge connects farmers with the right sellers for their crops. Streamlining agriculture for a better tomorrow.",
-    siteName: "Agrobridge",
+      "Find platform guides, tutorials, and support resources in the Agrobridge Help Center.",
+    url: "https://agro-bridge-taupe.vercel.app/help/helpcenter",
     images: [
       {
-        url: "/og-image.jpg", // Ensure this image exists in the static files
+        url: "https://agro-bridge-taupe.vercel.app/og-helpcenter.jpg",
         width: 1200,
         height: 630,
-        alt: "Agrobridge - Connecting Farmers to Sellers",
+        alt: "Agrobridge Help Center",
       },
     ],
   },
   twitter: {
-    card: "summary_large_image", // Ensures the large image format for Twitter
-    site: "@agrobridge", // Replace with your actual Twitter handle
-    title: "Agrobridge | Bridging Farmers to Sellers",
+    ...baseMetadata.twitter,
+    title: "Help Center | Your Agrobridge Support Hub",
     description:
-      "Agrobridge connects farmers with the right sellers for their crops.",
-    images: "/twitter-image.jpg", // Twitter-specific image
+      "Visit the Agrobridge Help Center for guides and step-by-step support.",
+    images: ["https://agro-bridge-taupe.vercel.app/twitter-helpcenter.jpg"],
   },
-  // favicon: "/favicon.ico", // Replace with your favicon path
 };
 
-export default function Help() {
-  return (
-    <div>Help</div>
-  );
+
+export default function HelpCenterPage() {
+  return <h1>Help Center Page</h1>;
 }
+

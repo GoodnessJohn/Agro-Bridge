@@ -6,45 +6,44 @@ import { Button } from "~/components/ui/button";
 import Link from "next/link";
 import { CheckCircle } from "lucide-react";
 import { HomeImages } from "~/lib/images";
-
-import type { VideoLink } from "~/app/types/types";
+import { baseMetadata } from "~/lib/metadata";
 
 const metadata: Metadata = {
-  title: {
-    template: "%s | Bridging Farmers to Sellers",
-    default: "Farmers",
-  },
+  ...baseMetadata,
+  title: "For Farmers | Empowering Agriculture with Agrobridge",
   description:
-    "Agrobridge connects farmers with the right sellers for their crops. Streamlining agriculture for a better tomorrow.",
-  keywords: "Agrobridge, farmers, sellers, agriculture, crops, marketplace",
-  authors: [{ name: "Agrobridge Team", url: "https://agro-bridge-taupe.vercel.app/" }],
+    "Discover how Agrobridge helps farmers sell directly, access better prices, and connect with verified buyers in a transparent marketplace.",
+  keywords: [
+    "Agrobridge farmers",
+    "sell crops",
+    "farming marketplace",
+    "agriculture solutions",
+    "farmer empowerment",
+  ],
   openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "https://agro-bridge-taupe.vercel.app/", 
-    title: "Agrobridge | Bridging Farmers to Sellers",
+    ...baseMetadata.openGraph,
+    title: "For Farmers | Empowering Agriculture with Agrobridge",
     description:
-      "Agrobridge connects farmers with the right sellers for their crops. Streamlining agriculture for a better tomorrow.",
-    siteName: "Agrobridge",
+      "Learn how Agrobridge supports farmers with tools, transparency, and better market access.",
+    url: "https://agro-bridge-taupe.vercel.app/company/farmers",
     images: [
       {
-        url: "/og-image.jpg", // Ensure this image exists in the static files
+        url: "https://agro-bridge-taupe.vercel.app/og-farmers.jpg",
         width: 1200,
         height: 630,
-        alt: "Agrobridge - Connecting Farmers to Sellers",
+        alt: "Agrobridge Farmers Page",
       },
     ],
   },
   twitter: {
-    card: "summary_large_image", // Ensures the large image format for Twitter
-    site: "@agrobridge", // Replace with your actual Twitter handle
-    title: "Agrobridge | Bridging Farmers to Sellers",
+    ...baseMetadata.twitter,
+    title: "For Farmers | Empowering Agriculture with Agrobridge",
     description:
-      "Agrobridge connects farmers with the right sellers for their crops.",
-    images: "/twitter-image.jpg", // Twitter-specific image
+      "Agrobridge helps farmers connect directly with trusted buyers and grow their business.",
+    images: ["https://agro-bridge-taupe.vercel.app/twitter-farmers.jpg"],
   },
-  // favicon: "/favicon.ico", // Replace with your favicon path
 };
+
 
 const benefits: Benefit[] = [
   {
@@ -66,7 +65,7 @@ const benefits: Benefit[] = [
 ];
 
 
-export default function Farmers() {
+export default function FarmersPage() {
   const farmerImage = HomeImages.find((img) => img.id === 'get-started-2');
   const ctaBgImage = HomeImages.find((img) => img.id === 'cta-background');
 

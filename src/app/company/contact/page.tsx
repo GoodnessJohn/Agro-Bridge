@@ -7,42 +7,42 @@ import { Input } from "~/components/ui/input";
 import { Textarea } from "~/components/ui/textarea";
 import { Button } from "~/components/ui/button";
 import { Phone, Mail, MapPin } from "lucide-react";
+import { baseMetadata } from "~/lib/metadata";
 
 const metadata: Metadata = {
-  title: {
-    template: "%s | Bridging Farmers to Sellers",
-    default: "Contact",
-  },
+  ...baseMetadata,
+  title: "Contact Us | Get in Touch with Agrobridge",
   description:
-    "Agrobridge connects farmers with the right sellers for their crops. Streamlining agriculture for a better tomorrow.",
-  keywords: "Agrobridge, farmers, sellers, agriculture, crops, marketplace",
-  authors: [{ name: "Agrobridge Team", url: "https://agro-bridge-taupe.vercel.app/" }],
+    "Have questions or need assistance? Contact the Agrobridge team for support, partnerships, or general inquiries.",
+  keywords: [
+    "Agrobridge contact",
+    "contact us",
+    "customer support",
+    "business inquiries",
+    "agriculture partnerships",
+  ],
   openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "https://agro-bridge-taupe.vercel.app/", // Replace with actual URL
-    title: "Agrobridge | Bridging Farmers to Sellers",
+    ...baseMetadata.openGraph,
+    title: "Contact Us | Get in Touch with Agrobridge",
     description:
-      "Agrobridge connects farmers with the right sellers for their crops. Streamlining agriculture for a better tomorrow.",
-    siteName: "Agrobridge",
+      "Reach out to the Agrobridge team for customer support, business inquiries, or partnership opportunities.",
+    url: "https://agro-bridge-taupe.vercel.app/company/contact",
     images: [
       {
-        url: "/og-image.jpg", // Ensure this image exists in the static files
+        url: "https://agro-bridge-taupe.vercel.app/og-contact.jpg",
         width: 1200,
         height: 630,
-        alt: "Agrobridge - Connecting Farmers to Sellers",
+        alt: "Agrobridge Contact Page",
       },
     ],
   },
   twitter: {
-    card: "summary_large_image", // Ensures the large image format for Twitter
-    site: "@agrobridge", // Replace with your actual Twitter handle
-    title: "Agrobridge | Bridging Farmers to Sellers",
+    ...baseMetadata.twitter,
+    title: "Contact Us | Get in Touch with Agrobridge",
     description:
-      "Agrobridge connects farmers with the right sellers for their crops.",
-    images: "/twitter-image.jpg", // Twitter-specific image
+      "Contact the Agrobridge team for help, inquiries, or support.",
+    images: ["https://agro-bridge-taupe.vercel.app/twitter-contact.jpg"],
   },
-  // favicon: "/favicon.ico", // Replace with your favicon path
 };
 
 

@@ -1,42 +1,41 @@
 
 import type { Metadata } from "next";
+import { baseMetadata } from "~/lib/metadata";
 
-// Static metadata
-export const metadata: Metadata = {
-  title: {
-    template: "%s | Bridging Farmers to Sellers",
-    default: "Terms of Service",
-  },
+const metadata: Metadata = {
+  ...baseMetadata,
+  title: "Terms & Conditions",
   description:
-    "Agrobridge connects farmers with the right sellers for their crops. Streamlining agriculture for a better tomorrow.",
-  keywords: "Agrobridge, farmers, sellers, agriculture, crops, marketplace",
-  authors: [{ name: "Agrobridge Team", url: "https://agro-bridge-taupe.vercel.app/" }],
+    "Read Agrobridge’s Terms & Conditions to understand your rights, responsibilities, and our service policies.",
+  keywords: [
+    "Agrobridge terms",
+    "terms of service",
+    "user agreement",
+    "platform rules",
+    "agriculture marketplace policies",
+  ],
   openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "https://agro-bridge-taupe.vercel.app/", // Replace with actual URL
-    title: "Agrobridge | Bridging Farmers to Sellers",
+    ...baseMetadata.openGraph,
+    title: "Terms & Conditions | Agrobridge",
     description:
-      "Agrobridge connects farmers with the right sellers for their crops. Streamlining agriculture for a better tomorrow.",
-    siteName: "Agrobridge",
+      "Review the Terms & Conditions that govern the use of Agrobridge’s platform and services.",
+    url: "https://agro-bridge-taupe.vercel.app/terms",
     images: [
       {
-        url: "/og-image.jpg", // Ensure this image exists in the static files
+        url: "https://agro-bridge-taupe.vercel.app/og-terms.jpg",
         width: 1200,
         height: 630,
-        alt: "Agrobridge - Connecting Farmers to Sellers",
+        alt: "Agrobridge Terms & Conditions",
       },
     ],
   },
   twitter: {
-    card: "summary_large_image", // Ensures the large image format for Twitter
-    site: "@agrobridge", // Replace with your actual Twitter handle
-    title: "Agrobridge | Bridging Farmers to Sellers",
+    ...baseMetadata.twitter,
+    title: "Terms & Conditions | Agrobridge",
     description:
-      "Agrobridge connects farmers with the right sellers for their crops.",
-    images: "/twitter-image.jpg", // Twitter-specific image
+      "Learn about the Terms & Conditions that guide your use of Agrobridge.",
+    images: ["https://agro-bridge-taupe.vercel.app/twitter-terms.jpg"],
   },
-  // favicon: "/favicon.ico", // Replace with your favicon path
 };
 
 

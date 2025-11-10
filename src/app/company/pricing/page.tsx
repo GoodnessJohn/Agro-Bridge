@@ -3,42 +3,42 @@ import type { Metadata } from "next";
 import { Button } from "~/components/ui/button";
 import { Check } from "lucide-react";
 import Link from "next/link";
+import { baseMetadata } from "~/lib/metadata";
 
 const metadata: Metadata = {
-  title: {
-    template: "%s | Bridging Farmers to Sellers",
-    default: "Pricing",
-  },
+  ...baseMetadata,
+  title: "Pricing | Agrobridge Plans and Solutions",
   description:
-    "Agrobridge connects farmers with the right sellers for their crops. Streamlining agriculture for a better tomorrow.",
-  keywords: "Agrobridge, farmers, sellers, agriculture, crops, marketplace",
-  authors: [{ name: "Agrobridge Team", url: "https://agro-bridge-taupe.vercel.app/" }],
+    "Explore Agrobridge’s pricing options and choose the plan that fits your farming or selling needs best.",
+  keywords: [
+    "Agrobridge pricing",
+    "plans",
+    "agriculture marketplace cost",
+    "subscription plans",
+    "farming solutions",
+  ],
   openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "https://agro-bridge-taupe.vercel.app/", // Replace with actual URL
-    title: "Agrobridge | Bridging Farmers to Sellers",
+    ...baseMetadata.openGraph,
+    title: "Pricing | Agrobridge Plans and Solutions",
     description:
-      "Agrobridge connects farmers with the right sellers for their crops. Streamlining agriculture for a better tomorrow.",
-    siteName: "Agrobridge",
+      "View Agrobridge’s flexible pricing plans designed to support farmers and sellers at every scale.",
+    url: "https://agro-bridge-taupe.vercel.app/company/pricing",
     images: [
       {
-        url: "/og-image.jpg", // Ensure this image exists in the static files
+        url: "https://agro-bridge-taupe.vercel.app/og-pricing.jpg",
         width: 1200,
         height: 630,
-        alt: "Agrobridge - Connecting Farmers to Sellers",
+        alt: "Agrobridge Pricing Plans",
       },
     ],
   },
   twitter: {
-    card: "summary_large_image", // Ensures the large image format for Twitter
-    site: "@agrobridge", // Replace with your actual Twitter handle
-    title: "Agrobridge | Bridging Farmers to Sellers",
+    ...baseMetadata.twitter,
+    title: "Pricing | Agrobridge Plans and Solutions",
     description:
-      "Agrobridge connects farmers with the right sellers for their crops.",
-    images: "/twitter-image.jpg", // Twitter-specific image
+      "Compare Agrobridge pricing plans and choose what works best for you.",
+    images: ["https://agro-bridge-taupe.vercel.app/twitter-pricing.jpg"],
   },
-  // favicon: "/favicon.ico", // Replace with your favicon path
 };
 
 import { PricingProp } from "~/app/types/types";
@@ -94,7 +94,7 @@ const pricingProps: PricingProp[] = [
   },
 ];
 
-export default function Pricing() {
+export default function PricingPage() {
   return (
     <main className="relative -mt-(--navbar-h) [font-family:var(--font-open-sans)] ">
       

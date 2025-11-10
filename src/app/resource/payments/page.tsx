@@ -1,46 +1,45 @@
 
-
 import type { Metadata } from "next";
+import { baseMetadata } from "~/lib/metadata";
 
-// Static metadata
-export const metadata: Metadata = {
-  title: {
-    template: "%s | Bridging Farmers to Sellers",
-    default: "Payments",
-  },
+const metadata: Metadata = {
+  ...baseMetadata,
+  title: "Payments | Agrobridge Transactions",
   description:
-    "Agrobridge connects farmers with the right sellers for their crops. Streamlining agriculture for a better tomorrow.",
-  keywords: "Agrobridge, farmers, sellers, agriculture, crops, marketplace",
-  authors: [{ name: "Agrobridge Team", url: "https://agro-bridge-taupe.vercel.app/" }],
+    "Learn how Agrobridge handles secure payments, transactions, and financial operations for farmers and sellers.",
+  keywords: [
+    "Agrobridge payments",
+    "transactions",
+    "financial security",
+    "farmers payments",
+    "seller transactions",
+  ],
   openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "https://agro-bridge-taupe.vercel.app/", // Replace with actual URL
-    title: "Agrobridge | Bridging Farmers to Sellers",
+    ...baseMetadata.openGraph,
+    title: "Payments | Agrobridge Transactions",
     description:
-      "Agrobridge connects farmers with the right sellers for their crops. Streamlining agriculture for a better tomorrow.",
-    siteName: "Agrobridge",
+      "Understand the secure payment processes and transaction management on Agrobridge.",
+    url: "https://agro-bridge-taupe.vercel.app/resource/payments",
     images: [
       {
-        url: "/og-image.jpg", // Ensure this image exists in the static files
+        url: "https://agro-bridge-taupe.vercel.app/og-payments.jpg",
         width: 1200,
         height: 630,
-        alt: "Agrobridge - Connecting Farmers to Sellers",
+        alt: "Agrobridge Payments",
       },
     ],
   },
   twitter: {
-    card: "summary_large_image", // Ensures the large image format for Twitter
-    site: "@agrobridge", // Replace with your actual Twitter handle
-    title: "Agrobridge | Bridging Farmers to Sellers",
+    ...baseMetadata.twitter,
+    title: "Payments | Agrobridge Transactions",
     description:
-      "Agrobridge connects farmers with the right sellers for their crops.",
-    images: "/twitter-image.jpg", // Twitter-specific image
+      "Learn about Agrobridge’s secure payment systems and transaction management for users.",
+    images: ["https://agro-bridge-taupe.vercel.app/twitter-payments.jpg"],
   },
-  // favicon: "/favicon.ico", // Replace with your favicon path
 };
 
-export default function Payments() {
+
+export default function PaymentsPage() {
   return (
     <div>Payments</div>
   );
