@@ -1,46 +1,45 @@
 
 import type { Metadata } from "next";
+import { baseMetadata } from "~/lib/metadata";
 
-// Static metadata
-export const metadata: Metadata = {
-  title: {
-    template: "%s | Bridging Farmers to Sellers",
-    default: "Privacy Policy",
-  },
+const metadata: Metadata = {
+  ...baseMetadata,
+  title: "Privacy Policy",
   description:
-    "Agrobridge connects farmers with the right sellers for their crops. Streamlining agriculture for a better tomorrow.",
-  keywords: "Agrobridge, farmers, sellers, agriculture, crops, marketplace",
-  authors: [{ name: "Agrobridge Team", url: "https://agro-bridge-taupe.vercel.app/" }],
+    "Understand how Agrobridge collects, uses, and protects your personal data.",
+  keywords: [
+    "Agrobridge privacy",
+    "data protection",
+    "user privacy policy",
+    "account security",
+    "agriculture platform privacy",
+  ],
   openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "https://agro-bridge-taupe.vercel.app/", // Replace with actual URL
-    title: "Agrobridge | Bridging Farmers to Sellers",
+    ...baseMetadata.openGraph,
+    title: "Privacy Policy | Agrobridge",
     description:
-      "Agrobridge connects farmers with the right sellers for their crops. Streamlining agriculture for a better tomorrow.",
-    siteName: "Agrobridge",
+      "Learn how Agrobridge safeguards your information and ensures transparency.",
+    url: "https://agro-bridge-taupe.vercel.app/privacy",
     images: [
       {
-        url: "/og-image.jpg", // Ensure this image exists in the static files
+        url: "https://agro-bridge-taupe.vercel.app/og-privacy.jpg",
         width: 1200,
         height: 630,
-        alt: "Agrobridge - Connecting Farmers to Sellers",
+        alt: "Agrobridge Privacy Policy",
       },
     ],
   },
   twitter: {
-    card: "summary_large_image", // Ensures the large image format for Twitter
-    site: "@agrobridge", // Replace with your actual Twitter handle
-    title: "Agrobridge | Bridging Farmers to Sellers",
+    ...baseMetadata.twitter,
+    title: "Privacy Policy | Agrobridge",
     description:
-      "Agrobridge connects farmers with the right sellers for their crops.",
-    images: "/twitter-image.jpg", // Twitter-specific image
+      "Understand how Agrobridge protects your personal data and maintains privacy.",
+    images: ["https://agro-bridge-taupe.vercel.app/twitter-privacy.jpg"],
   },
-  // favicon: "/favicon.ico", // Replace with your favicon path
 };
 
 
-export default function PrivacyPolicy() {
+export default function PrivacyPolicyPage() {
   return (
     <div>PrivacyPolicy</div>
   );

@@ -1,42 +1,41 @@
 
 import type { Metadata } from "next";
+import { baseMetadata } from "~/lib/metadata";
 
-// Static metadata
-export const metadata: Metadata = {
-  title: {
-    template: "%s | Bridging Farmers to Sellers",
-    default: "FAQs",
-  },
+const metadata: Metadata = {
+  ...baseMetadata,
+  title: "FAQs | Frequently Asked Questions",
   description:
-    "Agrobridge connects farmers with the right sellers for their crops. Streamlining agriculture for a better tomorrow.",
-  keywords: "Agrobridge, farmers, sellers, agriculture, crops, marketplace",
-  authors: [{ name: "Agrobridge Team", url: "https://agro-bridge-taupe.vercel.app/" }],
+    "Find quick answers to the most common questions about using Agrobridge — from registration to selling crops and more.",
+  keywords: [
+    "Agrobridge FAQs",
+    "frequently asked questions",
+    "help center",
+    "farmers help",
+    "agriculture support",
+  ],
   openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "https://agro-bridge-taupe.vercel.app/", // Replace with actual URL
-    title: "Agrobridge | Bridging Farmers to Sellers",
+    ...baseMetadata.openGraph,
+    title: "FAQs | Frequently Asked Questions",
     description:
-      "Agrobridge connects farmers with the right sellers for their crops. Streamlining agriculture for a better tomorrow.",
-    siteName: "Agrobridge",
+      "Explore our FAQs to quickly find answers about how Agrobridge works for farmers and sellers.",
+    url: "https://agro-bridge-taupe.vercel.app/help/faqs",
     images: [
       {
-        url: "/og-image.jpg", // Ensure this image exists in the static files
+        url: "https://agro-bridge-taupe.vercel.app/og-faqs.jpg",
         width: 1200,
         height: 630,
-        alt: "Agrobridge - Connecting Farmers to Sellers",
+        alt: "Agrobridge FAQs",
       },
     ],
   },
   twitter: {
-    card: "summary_large_image", // Ensures the large image format for Twitter
-    site: "@agrobridge", // Replace with your actual Twitter handle
-    title: "Agrobridge | Bridging Farmers to Sellers",
+    ...baseMetadata.twitter,
+    title: "FAQs | Frequently Asked Questions",
     description:
-      "Agrobridge connects farmers with the right sellers for their crops.",
-    images: "/twitter-image.jpg", // Twitter-specific image
+      "Need help? Visit the Agrobridge FAQs page to find quick answers and solutions.",
+    images: ["https://agro-bridge-taupe.vercel.app/twitter-faqs.jpg"],
   },
-  // favicon: "/favicon.ico", // Replace with your favicon path
 };
 
 

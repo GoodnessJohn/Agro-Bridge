@@ -23,27 +23,40 @@ interface VideoGalleryProps {
   videoThumbnails: VideoComponent[]
 }
 
-// Static metadata
 const metadata: Metadata = {
   title: {
-    template: "%s | Bridging Farmers to Sellers",
-    default: "Agrobridge",
+    default: "Agrobridge | Bridging Farmers to Sellers",
+    template: "%s | Agrobridge",
   },
   description:
-    "Agrobridge connects farmers with the right sellers for their crops. Streamlining agriculture for a better tomorrow.",
-  keywords: "Agrobridge, farmers, sellers, agriculture, crops, marketplace",
-  authors: [{ name: "Agrobridge Team", url: "https://agro-bridge-taupe.vercel.app/" }],
+    "Agrobridge connects farmers directly with trusted sellers, making agriculture more efficient, transparent, and profitable for everyone.",
+  keywords: [
+    "Agrobridge",
+    "farmers",
+    "sellers",
+    "agriculture",
+    "marketplace",
+    "crops",
+    "agritech",
+    "farming solutions",
+  ],
+  authors: [
+    {
+      name: "Agrobridge Team",
+      url: "https://agro-bridge-taupe.vercel.app/",
+    },
+  ],
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://agro-bridge-taupe.vercel.app/",
+    siteName: "Agrobridge",
     title: "Agrobridge | Bridging Farmers to Sellers",
     description:
-      "Agrobridge connects farmers with the right sellers for their crops. Streamlining agriculture for a better tomorrow.",
-    siteName: "Agrobridge",
+      "Agrobridge connects farmers directly with trusted sellers for better prices, transparency, and sustainability.",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "https://agro-bridge-taupe.vercel.app/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Agrobridge - Connecting Farmers to Sellers",
@@ -55,11 +68,20 @@ const metadata: Metadata = {
     site: "@agrobridge",
     title: "Agrobridge | Bridging Farmers to Sellers",
     description:
-      "Agrobridge connects farmers with the right sellers for their crops.",
-    images: "/twitter-image.jpg",
+      "Agrobridge connects farmers directly with trusted sellers for better prices and transparency.",
+    images: ["https://agro-bridge-taupe.vercel.app/twitter-image.jpg"],
   },
-  // favicon: "/favicon.ico", // Replace with your favicon path
+  metadataBase: new URL("https://agro-bridge-taupe.vercel.app"),
+  alternates: {
+    canonical: "https://agro-bridge-taupe.vercel.app/",
+  },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
 };
+
 
 const stats: Stat[] = [
   { value: '50+', label: 'Years Of Experience' },

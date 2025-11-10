@@ -1,45 +1,45 @@
 
 import type { Metadata } from "next";
+import { baseMetadata } from "~/lib/metadata";
 
-// Static metadata
-export const metadata: Metadata = {
-  title: {
-    template: "%s | Bridging Farmers to Sellers",
-    default: "Customer Stories",
-  },
+const metadata: Metadata = {
+  ...baseMetadata,
+  title: "Customer Stories | Agrobridge Success Stories",
   description:
-    "Agrobridge connects farmers with the right sellers for their crops. Streamlining agriculture for a better tomorrow.",
-  keywords: "Agrobridge, farmers, sellers, agriculture, crops, marketplace",
-  authors: [{ name: "Agrobridge Team", url: "https://agro-bridge-taupe.vercel.app/" }],
+    "See how farmers and sellers succeed using Agrobridge’s platform through real-life stories and experiences.",
+  keywords: [
+    "Agrobridge customer stories",
+    "success stories",
+    "farmers testimonials",
+    "seller experiences",
+    "agriculture success",
+  ],
   openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "https://agro-bridge-taupe.vercel.app/", // Replace with actual URL
-    title: "Agrobridge | Bridging Farmers to Sellers",
+    ...baseMetadata.openGraph,
+    title: "Customer Stories | Agrobridge Success Stories",
     description:
-      "Agrobridge connects farmers with the right sellers for their crops. Streamlining agriculture for a better tomorrow.",
-    siteName: "Agrobridge",
+      "Discover real user stories showing how Agrobridge improves agriculture and marketplace outcomes.",
+    url: "https://agro-bridge-taupe.vercel.app/resource/customerstories",
     images: [
       {
-        url: "/og-image.jpg", // Ensure this image exists in the static files
+        url: "https://agro-bridge-taupe.vercel.app/og-customerstories.jpg",
         width: 1200,
         height: 630,
-        alt: "Agrobridge - Connecting Farmers to Sellers",
+        alt: "Agrobridge Customer Stories",
       },
     ],
   },
   twitter: {
-    card: "summary_large_image", // Ensures the large image format for Twitter
-    site: "@agrobridge", // Replace with your actual Twitter handle
-    title: "Agrobridge | Bridging Farmers to Sellers",
+    ...baseMetadata.twitter,
+    title: "Customer Stories | Agrobridge Success Stories",
     description:
-      "Agrobridge connects farmers with the right sellers for their crops.",
-    images: "/twitter-image.jpg", // Twitter-specific image
+      "Read testimonials from farmers and sellers who thrive with Agrobridge.",
+    images: ["https://agro-bridge-taupe.vercel.app/twitter-customerstories.jpg"],
   },
-  // favicon: "/favicon.ico", // Replace with your favicon path
 };
 
-export default function CustomerStories() {
+
+export default function CustomerStoriesPage() {
   return (
     <div>Customer Stories</div>
   );

@@ -5,43 +5,44 @@ import { HomeImages } from "~/lib/images";
 import { Button } from "~/components/ui/button";
 import type { Product } from "~/app/types/types";
 import Link from "next/link";
+import { baseMetadata } from "~/lib/metadata";
 
 const metadata: Metadata = {
-  title: {
-    template: "%s | Bridging Farmers to Sellers",
-    default: "Products",
-  },
+  ...baseMetadata,
+  title: "Products | Agrobridge Agricultural Solutions",
   description:
-    "Agrobridge connects farmers with the right sellers for their crops. Streamlining agriculture for a better tomorrow.",
-  keywords: "Agrobridge, farmers, sellers, agriculture, crops, marketplace",
-  authors: [{ name: "Agrobridge Team", url: "https://agro-bridge-taupe.vercel.app/" }],
+    "Explore Agrobridge’s range of agricultural products and digital solutions designed to empower farmers and sellers.",
+  keywords: [
+    "Agrobridge products",
+    "agriculture tools",
+    "farming products",
+    "marketplace solutions",
+    "agritech platform",
+  ],
   openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "https://agro-bridge-taupe.vercel.app/", // Replace with actual URL
-    title: "Agrobridge | Bridging Farmers to Sellers",
+    ...baseMetadata.openGraph,
+    title: "Products | Agrobridge Agricultural Solutions",
     description:
-      "Agrobridge connects farmers with the right sellers for their crops. Streamlining agriculture for a better tomorrow.",
-    siteName: "Agrobridge",
+      "Discover innovative Agrobridge products and digital solutions built for modern agriculture.",
+    url: "https://agro-bridge-taupe.vercel.app/company/products",
     images: [
       {
-        url: "/og-image.jpg", // Ensure this image exists in the static files
+        url: "https://agro-bridge-taupe.vercel.app/og-products.jpg",
         width: 1200,
         height: 630,
-        alt: "Agrobridge - Connecting Farmers to Sellers",
+        alt: "Agrobridge Products",
       },
     ],
   },
   twitter: {
-    card: "summary_large_image", // Ensures the large image format for Twitter
-    site: "@agrobridge", // Replace with your actual Twitter handle
-    title: "Agrobridge | Bridging Farmers to Sellers",
+    ...baseMetadata.twitter,
+    title: "Products | Agrobridge Agricultural Solutions",
     description:
-      "Agrobridge connects farmers with the right sellers for their crops.",
-    images: "/twitter-image.jpg", // Twitter-specific image
+      "Browse Agrobridge products and solutions made to bridge the gap between farmers and sellers.",
+    images: ["https://agro-bridge-taupe.vercel.app/twitter-products.jpg"],
   },
-  // favicon: "/favicon.ico", // Replace with your favicon path
 };
+
 
 const products: Product[] = [
   {
@@ -74,7 +75,34 @@ const products: Product[] = [
   }
 ];
 
-export default function Products() {
+export default function ProductsPage() {
+  const productsSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Agrobridge Product Line",
+    description:
+      "A collection of agricultural products and digital tools for farmers and sellers.",
+    url: "https://agro-bridge-taupe.vercel.app/company/products",
+    itemListElement: [
+      {
+        "@type": "Product",
+        position: 1,
+        name: "Agrobridge Marketplace Access",
+        description:
+          "Connect with buyers and sellers directly through the Agrobridge platform.",
+        image: "https://agro-bridge-taupe.vercel.app/images/product1.jpg",
+      },
+      {
+        "@type": "Product",
+        position: 2,
+        name: "Agrobridge Analytics Dashboard",
+        description:
+          "Monitor market trends and optimize your crop sales through data-driven insights.",
+        image: "https://agro-bridge-taupe.vercel.app/images/product2.jpg",
+      },
+    ],
+  };
+
   const aboutHeroImage = HomeImages.find((img) => img.id === 'get-started-2');
   return (
     <main className="relative -mt-(--navbar-h) [font-family:var(--font-open-sans)] ">

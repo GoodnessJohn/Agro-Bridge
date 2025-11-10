@@ -22,10 +22,27 @@ const openSans = Open_Sans({
   variable: "--font-open-sans",
 });
 
-export const metadata: Metadata = {
-  title: "Agrobridge",
-  description: "Bridging Farmers to Sellers",
+const metadata: Metadata = {
+  metadataBase: new URL("https://agro-bridge-taupe.vercel.app"),
+  title: {
+    template: "%s | Agrobridge",
+    default: "Agrobridge | Bridging Farmers to Sellers",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: "Agrobridge",
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@agrobridge",
+  },
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
 };
+
 
 export default function RootLayout({
   children,
